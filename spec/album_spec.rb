@@ -51,4 +51,13 @@ describe('#Album') do
     end
   end
 
+  describe('#update') do
+    it('updates album name') do
+      album = Album.new("Them Crooked Vultures", nil)
+      album.save
+      album.update("Zipper Down")
+      expect(album.name).to(eq("Zipper Down"))
+    end
+  end
+
 end
