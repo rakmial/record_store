@@ -18,6 +18,10 @@ class Album
     @@total_rows = 0
   end
 
+  def self.find(id)
+    @@albums[id]
+  end
+
   def save
     @@albums[self.id] = Album.new(self.name, self.id)
   end
