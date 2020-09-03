@@ -56,7 +56,9 @@ describe('#Album') do
       album = Album.new("Them Crooked Vultures", nil)
       album.save
       album.update("Zipper Down")
+      album.save
       expect(album.name).to(eq("Zipper Down"))
+      expect(Album.find(1)).to(eq(album))
     end
   end
 
