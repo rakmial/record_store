@@ -62,4 +62,15 @@ describe('#Album') do
     end
   end
 
+  describe('#delete') do
+    it('deletes an album by id') do
+      album = Album.new("Holy Diver", nil)
+      album.save
+      album2 = Album.new("Emily's D+Evolution", nil)
+      album2.save
+      album.delete
+      expect(Album.all).to(eq([album2]))
+    end
+  end
+
 end
