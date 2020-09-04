@@ -5,15 +5,18 @@ require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
-  "Welcome to record_store. We mostly have Death Grips."
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/albums') do
-  Album.all
+  binding.pry
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/albums/new') do
-  "Page with form to POST/create new album"
+  erb(:new_album)
 end
 
 get('/albums/:id') do
@@ -21,8 +24,11 @@ get('/albums/:id') do
 end
 
 post('/albums') do
-  "Adds an album to list of albums. Can't access by URL alone, have to use \
-  form to specify POST action."
+  name = params[:album_name]
+  album = Album.new(name, nil)
+  album.save()
+  @albums = Album.all()
+  erb(:albums)
 end
 
 get('/albums/:id/edit') do
