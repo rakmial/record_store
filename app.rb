@@ -1,5 +1,7 @@
 require('sinatra')
 require('sinatra/reloader')
+require('./lib/album')
+require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
@@ -15,7 +17,7 @@ get('/albums/new') do
 end
 
 get('/albums/:id') do
-  Album.find(#{params[:id]})
+  Album.find("#{params[:id]}")
 end
 
 post('/albums') do
@@ -37,9 +39,15 @@ delete('/albums/:id') do
   comes via form or button."
 end
 
+get('/test') do
+  @something = "this is a variable"
+  erb(:whatever)
+end
+
 get('/custom_route') do
   "Custom routes are available but should only be used when needed."
 end
 
 get('/contact_us') do
   "Set a fire in a Barney's, and I will crawl out from a nearby sewer grate."
+end
