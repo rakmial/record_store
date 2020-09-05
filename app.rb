@@ -10,7 +10,6 @@ get('/') do
 end
 
 get('/albums') do
-  binding.pry
   @albums = Album.all
   erb(:albums)
 end
@@ -20,7 +19,8 @@ get('/albums/new') do
 end
 
 get('/albums/:id') do
-  Album.find("#{params[:id]}")
+  @album = Album.find(params[:id].to_i)
+  erb(:album)
 end
 
 post('/albums') do
@@ -32,17 +32,22 @@ post('/albums') do
 end
 
 get('/albums/:id/edit') do
-  "Page with form for PATCH/update with ID #{params[:id]}."
+  @album = Album.find(params[:id].to_i())
+  erb(:edit_album)
 end
 
 patch('/albums/:id') do
-  "Updates album with ID #{params[:id]}, must come from form action rather than |
-  URL alone."
+  @album = Album.find(params[:id].to_i())
+  @album.update(params[:name])
+  @albums = Album.all
+  erb(:albums)
 end
 
 delete('/albums/:id') do
-  "Deletes album at ID. Like PATCH and POST, can't be reached through URL alone, \
-  comes via form or button."
+  @album = Album.find(params[:id].to_i)
+  @album.delete
+  @albums = Album.all
+  erb(:albums)
 end
 
 get('/test') do
