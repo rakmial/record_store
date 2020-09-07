@@ -1,48 +1,60 @@
- require('rspec')
- require('song')
- require('album')
- require('pry')
+require('rspec')
+require('song')
+require('album')
+require('pry')
  
- describe('#Song') do
+describe('#Song') do
 
-   before(:each) do
-     Album.clear
-     #Song.clear
+  before(:each) do
+    Album.clear
+    #Song.clear
+    @name = "Flower Boy"
+    @artist = "Tyler the Creator"
+    @year = 2016
+    @genre = "Hip Hop"
+    @album = Album.new(@name, @artist, @year, @genre, nil)
+    @album.save
+    @song_name = "Garden Shed"
+    @song = Song.new(@song_name, @album.id, nil)
+    
+    @name2 = "Longjohns Boots and a Belt"
+    @artist2 = "The Devil Makes Three"
+    @year2 = 2004
+    @genre2 = "Folk Rock"
+    @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
+    @album2.save
+    @song_name2 = "Never Learn"
+    @song2 = Song.new(@song_name, @album2.id, nil)
+  end
 
-     @name = "Flower Boy"
-     @artist = "Tyler the Creator"
-     @year = 2016
-     @genre = "Hip Hop"
-     @album = Album.new(@name, @artist, @year, @genre, nil)
-     @album.save
-     @song_name = "Garden Shed"
-     @song = Song.new(@song_name, @album.id, nil)
-     
-     @name2 = "Longjohns Boots and a Belt"
-     @artist2 = "The Devil Makes Three"
-     @year2 = 2004
-     @genre2 = "Folk Rock"
-     @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
-     @album2.save
-     @song_name2 = "Never Learn"
-     @song2 = Song.new(@song_name, @album2.id, nil)
+  it('initializes with accessor attributes name, album_id, and reader attr id') do
+    expect(@song.name).to(eq(@song_name))
+    expect(@song.album_id).to(eq(@album.id))
+    expect(@song.id).to(eq(1)) # id increments on init
+    expect(@song2.id).to(eq(2))
+  end
+    
+  describe('.clear') do
+    it('clears albums from hash') do
+      Song.clear
+      expect(Song.all).to(eq([]))
+    end
+  end
 
-   end
-   
-   it('initializes with accessor attributes name, album_id, and reader attr id') do
-     expect(@song.name).to(eq(@song_name))
-     expect(@song.album_id).to(eq(@album.id))
-     expect(@song.id).to(eq(1)) # id increments on init
-     expect(@song2.id).to(eq(2))
-   end
-# 
-#   describe('#save') do
-#     it('saves an album to albums hash') do
-#       album3 = Album.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
-#       album3.save
-#       expect(Album.all).to(eq([@album,@album2,album3]))
-#     end
-#   end
+  describe('.all') do
+    it('is empty when no songs have been created or after .clear') do
+      Song.clear
+      expect(Song.all).to(eq([]))
+    end
+  end
+
+  #describe('#save') do
+  #  it('saves a song to songs hash') do
+  #    song3 = Song.new("Man Tap", 2, nil)
+  #    song3.save
+  #    expect(Song.all).to(eq([@song,@song2,song3]))
+  #  end
+  #end
 # 
 #   describe('#update') do
 #     it('updates album attributes') do
@@ -71,19 +83,7 @@
 #     end
 #   end
 # 
-#   describe('.clear') do
-#     it('clears albums from hash') do
-#       Album.clear
-#       expect(Album.all).to(eq([]))
-#     end
-#   end
 #   
-#   describe('.all') do
-#     it('is empty when no albums have been created or after .clear') do
-#       Album.clear
-#       expect(Album.all).to(eq([]))
-#     end
-#   end
 # 
 #   describe('.all') do
 #     it('returns an array of Album objects that have been saved') do
