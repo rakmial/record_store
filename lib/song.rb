@@ -33,8 +33,9 @@ class Song
   end
 
   def update(new_name, new_album_id)
-    @name = new_name
-    @album_id = new_album_id
+    self.name = new_name
+    self.album_id = new_album_id
+    self.save
   end
 
   def delete

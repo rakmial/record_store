@@ -1,5 +1,6 @@
 class Album
-  attr_reader :name, :artist, :year, :genre, :id
+  attr_accessor :name, :artist, :year, :genre
+  attr_reader :id
   
   # Class variables
   @@albums = {}
@@ -34,10 +35,11 @@ class Album
   end
 
   def update(new_name, new_artist, new_year, new_genre)
-    @name = new_name
-    @artist = new_artist
-    @year = new_year
-    @genre = new_genre
+    self.name = new_name
+    self.artist = new_artist
+    self.year = new_year
+    self.genre = new_genre
+    self.save
   end
 
   def delete
