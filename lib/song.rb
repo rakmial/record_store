@@ -1,3 +1,5 @@
+require('pry')
+
 class Song
   attr_reader :id
   attr_accessor :name, :album_id 
@@ -25,6 +27,14 @@ class Song
 
   def self.find(id)
     @@songs[id]
+  end
+
+  def self.find_by_album(alb_id)
+    songs = []
+    @@songs.values.each do |song|
+      songs.push(song) if song.album_id == alb_id
+    end
+    songs
   end
 
   # Instance methods
