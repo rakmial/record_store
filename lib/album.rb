@@ -29,9 +29,9 @@ class Album
   end
 
   # Instance methods
-  def save
-    @@albums[self.id] = Album.new(self.name, self.artist, self.year, self.genre, self.id)
-  end
+  #def save
+  #  @@albums[self.id] = Album.new(self.name, self.artist, self.year, self.genre, self.id)
+  #end
 
   def update(new_name)
     @name = new_name

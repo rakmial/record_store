@@ -25,6 +25,38 @@ describe('#Album') do
     expect(newAlbum.id).to(eq(1)) # id increments on init
   end
 
+  describe('#save') do
+    it('saves an album to albums hash') do
+      album = Album.new(name, artist, year, genre, nil)
+      album.save()
+      album2 = Album.new(name2, artist2, year2, genre2, nil)
+      album2.save()
+      expect(Album.all).to(eq([album,album2]))
+    end
+  end
+
+  #describe('#update') do
+  #  it('updates album name') do
+  #    album = Album.new("Them Crooked Vultures", nil)
+  #    album.save
+  #    album.update("Zipper Down")
+  #    album.save
+  #    expect(album.name).to(eq("Zipper Down"))
+  #    expect(Album.find(1)).to(eq(album))
+  #  end
+  #end
+#
+  #describe('#delete') do
+  #  it('deletes an album by id') do
+  #    album = Album.new("Holy Diver", nil)
+  #    album.save
+  #    album2 = Album.new("Emily's D+Evolution", nil)
+  #    album2.save
+  #    album.delete
+  #    expect(Album.all).to(eq([album2]))
+  #  end
+  #end
+  
   describe('.all') do
     it('is empty when no albums have been created') do
       expect(Album.all).to(eq([]))
@@ -60,36 +92,5 @@ describe('#Album') do
     end
   end
 
-  #describe('#save') do
-  #  it('saves an album to albums hash') do
-  #    album = Album.new("Giant Steps", nil)
-  #    album.save()
-  #    album2 = Album.new("Blue", nil)
-  #    album2.save()
-  #    expect(Album.all).to(eq([album,album2]))
-  #  end
-  #end
-#
-  #describe('#update') do
-  #  it('updates album name') do
-  #    album = Album.new("Them Crooked Vultures", nil)
-  #    album.save
-  #    album.update("Zipper Down")
-  #    album.save
-  #    expect(album.name).to(eq("Zipper Down"))
-  #    expect(Album.find(1)).to(eq(album))
-  #  end
-  #end
-#
-  #describe('#delete') do
-  #  it('deletes an album by id') do
-  #    album = Album.new("Holy Diver", nil)
-  #    album.save
-  #    album2 = Album.new("Emily's D+Evolution", nil)
-  #    album2.save
-  #    album.delete
-  #    expect(Album.all).to(eq([album2]))
-  #  end
-  #end
 
 end
