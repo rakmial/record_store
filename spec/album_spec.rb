@@ -41,16 +41,16 @@ describe('#Album') do
       expect(Album.all).to(eq([]))
     end
   end
-#
-  #describe('.find') do
-  #  it('returns album by id') do
-  #    album = Album.new("Roy & Diz", nil)
-  #    album.save
-  #    album2 = Album.new("Flower Boy", nil)
-  #    album2.save
-  #    expect(Album.find(album.id)).to(eq(album))
-  #  end
-  #end
+
+  describe('.find') do
+    it('returns album by id') do
+      album = Album.new(name, artist, year, genre, nil)
+      album.save
+      album2 = Album.new(name2, artist2, year2, genre2, nil)
+      album2.save
+      expect(Album.find(album.id)).to(eq(album))
+    end
+  end
 #
   #describe('#==') do
   #  it('is the same if the attributes are the same') do
