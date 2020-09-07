@@ -33,8 +33,11 @@ class Album
     @@albums[self.id] = Album.new(self.name, self.artist, self.year, self.genre, self.id)
   end
 
-  def update(new_name)
+  def update(new_name, new_artist, new_year, new_genre)
     @name = new_name
+    @artist = new_artist
+    @year = new_year
+    @genre = new_genre
   end
 
   def delete

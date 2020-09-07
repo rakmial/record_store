@@ -42,9 +42,9 @@ describe('#Album') do
       album.update(name2, artist2, year2, genre2)
       album.save
       expect(album.name).to(eq(name2))
-      expect(album.name).to(eq(artist2))
-      expect(album.name).to(eq(year2))
-      expect(album.name).to(eq(genre2))
+      expect(album.artist).to(eq(artist2))
+      expect(album.year).to(eq(year2))
+      expect(album.genre).to(eq(genre2))
       expect(Album.find(1)).to(eq(album))
     end
   end
