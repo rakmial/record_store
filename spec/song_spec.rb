@@ -50,13 +50,13 @@ describe('#Song') do
     end
   end
 
-  #describe('#save') do
-  #  it('saves a song to songs hash') do
-  #    song3 = Song.new("Man Tap", @album2.id, nil)
-  #    song3.save
-  #    expect(Song.all).to(eq([@song,@song2,song3]))
-  #  end
-  #end
+  describe('#save') do
+    it('saves a song to songs hash') do
+      song3 = Song.new("Man Tap", @album2.id, nil)
+      song3.save
+      expect(Song.all).to(eq([@song,@song2,song3]))
+    end
+  end
 # 
 #   describe('#update') do
 #     it('updates album attributes') do
@@ -80,7 +80,7 @@ describe('#Song') do
 #   
   describe('#==') do
     it('is the same song if the attributes are the same, ignoring id') do
-      identical_song = Song.new(@song_name, @album_id, nil)
+      identical_song = Song.new(@song_name, @album.id, nil)
       expect(@song).to(eq(identical_song))
     end
   end
