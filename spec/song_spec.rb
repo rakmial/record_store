@@ -49,6 +49,12 @@ describe('#Song') do
       expect(Song.all).to(eq([]))
     end
   end
+  
+  describe('.all') do
+    it('returns an array of Song objects that have been saved') do
+      expect(Song.all).to(eq([@album, @album2]))
+    end
+  end
 
   describe('#save') do
     it('saves a song to songs hash') do
@@ -60,21 +66,21 @@ describe('#Song') do
 # 
 #   describe('#update') do
 #     it('updates album attributes') do
-#       album3 = Album.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
+#       album3 = Song.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
 #       album3.update(@name2, @artist2, @year2, @genre2)
 #       album3.save
 #       expect(album3.name).to(eq(@name2))
 #       expect(album3.artist).to(eq(@artist2))
 #       expect(album3.year).to(eq(@year2))
 #       expect(album3.genre).to(eq(@genre2))
-#       expect(Album.find(3)).to(eq(album3))
+#       expect(Song.find(3)).to(eq(album3))
 #     end
 #   end
 # 
 #   describe('#delete') do
 #     it('deletes an album by id') do
 #       @album.delete
-#       expect(Album.all).to(eq([@album2]))
+#       expect(Song.all).to(eq([@album2]))
 #     end
 #   end
 #   
@@ -85,18 +91,10 @@ describe('#Song') do
     end
   end
 # 
-#   
-# 
-#   describe('.all') do
-#     it('returns an array of Album objects that have been saved') do
-#       expect(Album.all).to(eq([@album, @album2]))
-#     end
-#   end
-# 
-#   describe('.find') do
-#     it('returns album by id') do
-#       expect(Album.find(@album.id)).to(eq(@album))
-#       expect(Album.find(@album2.id)).to(eq(@album2))
-#     end
-#   end
+  describe('.find') do
+    it('returns song by id') do
+      expect(Song.find(@song.id)).to(eq(@song))
+      expect(Song.find(@song2.id)).to(eq(@song2))
+    end
+  end
 end 
