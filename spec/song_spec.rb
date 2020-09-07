@@ -66,7 +66,7 @@ describe('#Song') do
     end
   end
 
-  describe('find_by_album') do
+  describe('.find_by_album') do
     it('finds an array of songs from album of album_id') do
       expect(Song.find_by_album(@album.id)).to(eq([@song]))
       #expect(Song.find_by_album(@album2.id)).to(eq([@song2]))
@@ -107,4 +107,12 @@ describe('#Song') do
       expect(@song).to(eq(identical_song))
     end
   end
+
+  describe('#album') do
+    it('returns album object to which it belongs by id') do
+      expect(@song.album).to(eq(@album))
+    end
+  end
+
+
 end 
