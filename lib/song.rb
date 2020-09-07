@@ -32,13 +32,11 @@ class Song
     @@songs[self.id] = Song.new(self.name, self.album_id, self.id)
   end
 
-#  def update(new_name, new_artist, new_year, new_genre)
-#    @name = new_name
-#    @artist = new_artist
-#    @year = new_year
-#    @genre = new_genre
-#  end
-#
+  def update(new_name, new_album_id)
+    @name = new_name
+    @album_id = new_album_id
+  end
+
   def delete
     @@songs.delete(self.id)
   end
