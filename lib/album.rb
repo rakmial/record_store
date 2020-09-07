@@ -40,9 +40,9 @@ class Album
     @genre = new_genre
   end
 
-  def delete
-    @@albums.delete(self.id)
-  end
+  #def delete
+  #  @@albums.delete(self.id)
+  #end
 
   def ==(other_album)
     (self.name == other_album.name) &&

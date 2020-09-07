@@ -49,16 +49,16 @@ describe('#Album') do
     end
   end
 
-  #describe('#delete') do
-  #  it('deletes an album by id') do
-  #    album = Album.new("Holy Diver", nil)
-  #    album.save
-  #    album2 = Album.new("Emily's D+Evolution", nil)
-  #    album2.save
-  #    album.delete
-  #    expect(Album.all).to(eq([album2]))
-  #  end
-  #end
+  describe('#delete') do
+    it('deletes an album by id') do
+      album = Album.new(name, artist, year, genre, nil)
+      album.save
+      album2 = Album.new(name2, artist2, year2, genre2, nil)
+      album2.save
+      album.delete
+      expect(Album.all).to(eq([album2]))
+    end
+  end
 
   describe('.all') do
     it('is empty when no albums have been created') do
@@ -94,6 +94,4 @@ describe('#Album') do
       expect(album).to(eq(album2))
     end
   end
-
-
 end
