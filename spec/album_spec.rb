@@ -10,6 +10,9 @@ describe('#Album') do
     @genre = "Hip Hop"
     @album = Album.new(@name, @artist, @year, @genre, nil)
     @album.save
+    @song_name = "Garden Shed"
+    @song = Song.new(@song_name, @album.id, nil)
+    @song.save
     
     @name2 = "Longjohns Boots and a Belt"
     @artist2 = "The Devil Makes Three"
@@ -17,6 +20,9 @@ describe('#Album') do
     @genre2 = "Folk Rock"
     @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
     @album2.save
+    @song_name2 = "Never Learn"
+    @song2 = Song.new(@song_name2, @album2.id, nil)
+    @song2.save
   end
   
 
