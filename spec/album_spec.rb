@@ -5,12 +5,13 @@ describe('#Album') do
   before(:each) do
     Album.clear
   end
-
+  
+  name = "Flower Boy"
+  artist = "Tyler the Creator"
+  year = 2016
+  genre = "Hip Hop"
+  
   it('initializes with reader attributes name, artist, year, genre, id') do
-    name = "Flower Boy"
-    artist = "Tyler the Creator"
-    year = 2016
-    genre = "Hip Hop"
     newAlbum = Album.new(name, artist, year, genre, nil)
     expect(newAlbum.name).to(eq(name))
     expect(newAlbum.artist).to(eq(artist))
