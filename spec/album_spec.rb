@@ -11,7 +11,7 @@ describe('#Album') do
     artist = "Tyler the Creator"
     year = 2016
     genre = "Hip Hop"
-    newAlbum = new Album(name, artist, year, genre, nil)
+    newAlbum = Album.new(name, artist, year, genre, nil)
     expect(newAlbum.name).to(eq(name))
     expect(newAlbum.artist).to(eq(artist))
     expect(newAlbum.year).to(eq(2016))

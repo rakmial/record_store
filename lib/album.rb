@@ -1,13 +1,16 @@
 class Album
-  attr_reader :id, :name
+  attr_reader :name, :artist, :year, :genre, :id
   
   # Class variables
   @@albums = {}
   @@total_rows = 0
 
   # Constructor
-  def initialize name, id
+  def initialize name, artist, year, genre, id
     @name = name
+    @artist = artist
+    @year = year
+    @genre = genre
     @id = id || @@total_rows += 1
   end
 
