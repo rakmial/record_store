@@ -29,6 +29,8 @@ describe('#Album') do
     expect(@album2.id).to(eq(2))
   end
 
+  # Instance methods ---
+
   describe('#save') do
     it('saves an album to albums hash') do
       album3 = Album.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
@@ -63,6 +65,15 @@ describe('#Album') do
       expect(@album).to(eq(identical_album))
     end
   end
+
+  describe('#songs') do
+    it('returns an array of songs on the album') do
+      expect(@album.songs).to(eq([@song]))
+    end
+  end
+
+
+  # Class methods
 
   describe('.clear') do
     it('clears albums from hash') do
