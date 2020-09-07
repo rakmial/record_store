@@ -36,6 +36,8 @@ describe('#Song') do
     expect(@song2.id).to(eq(2))
   end
     
+  # Class methods ---
+
   describe('.clear') do
     it('clears albums from hash') do
       Song.clear
@@ -56,6 +58,16 @@ describe('#Song') do
     end
   end
 
+   
+  describe('.find') do
+    it('returns song by id') do
+      expect(Song.find(@song.id)).to(eq(@song))
+      expect(Song.find(@song2.id)).to(eq(@song2))
+    end
+  end
+
+  # Instance methods --- 
+  
   describe('#save') do
     it('saves a song to songs hash') do
       song3 = Song.new("Man Tap", @album2.id, nil)
@@ -86,13 +98,6 @@ describe('#Song') do
     it('is the same song if the attributes are the same, ignoring id') do
       identical_song = Song.new(@song_name, @album.id, nil)
       expect(@song).to(eq(identical_song))
-    end
-  end
-# 
-  describe('.find') do
-    it('returns song by id') do
-      expect(Song.find(@song.id)).to(eq(@song))
-      expect(Song.find(@song2.id)).to(eq(@song2))
     end
   end
 end 
