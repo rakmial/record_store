@@ -7,7 +7,7 @@ describe('#Song') do
 
   before(:each) do
     Album.clear
-    #Song.clear
+    Song.clear
     @name = "Flower Boy"
     @artist = "Tyler the Creator"
     @year = 2016
@@ -16,6 +16,7 @@ describe('#Song') do
     @album.save
     @song_name = "Garden Shed"
     @song = Song.new(@song_name, @album.id, nil)
+    @song.save
     
     @name2 = "Longjohns Boots and a Belt"
     @artist2 = "The Devil Makes Three"
@@ -24,7 +25,8 @@ describe('#Song') do
     @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
     @album2.save
     @song_name2 = "Never Learn"
-    @song2 = Song.new(@song_name, @album2.id, nil)
+    @song2 = Song.new(@song_name2, @album2.id, nil)
+    @song2.save
   end
 
   it('initializes with accessor attributes name, album_id, and reader attr id') do
@@ -48,13 +50,13 @@ describe('#Song') do
     end
   end
 
-  describe('#save') do
-    it('saves a song to songs hash') do
-      song3 = Song.new("Man Tap", 2, nil)
-      song3.save
-      expect(Song.all).to(eq([@song,@song2,song3]))
-    end
-  end
+  #describe('#save') do
+  #  it('saves a song to songs hash') do
+  #    song3 = Song.new("Man Tap", @album2.id, nil)
+  #    song3.save
+  #    expect(Song.all).to(eq([@song,@song2,song3]))
+  #  end
+  #end
 # 
 #   describe('#update') do
 #     it('updates album attributes') do
@@ -76,12 +78,12 @@ describe('#Song') do
 #     end
 #   end
 #   
-#   describe('#==') do
-#     it('is the same album if the attributes are the same, ignoring id') do
-#       identical_album = Album.new(@name, @artist, @year, @genre, nil)
-#       expect(@album).to(eq(identical_album))
-#     end
-#   end
+  describe('#==') do
+    it('is the same song if the attributes are the same, ignoring id') do
+      identical_song = Song.new(@song_name, @album_id, nil)
+      expect(@song).to(eq(identical_song))
+    end
+  end
 # 
 #   
 # 

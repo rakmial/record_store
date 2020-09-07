@@ -28,9 +28,9 @@ class Song
 #  end
 #
 #  # Instance methods
-#  def save
-#    @@songs[self.id] = Song.new(self.name, self.artist, self.year, self.genre, self.id)
-#  end
+  def save
+    @@songs[self.id] = Song.new(self.name, self.album_id, self.id)
+  end
 #
 #  def update(new_name, new_artist, new_year, new_genre)
 #    @name = new_name
