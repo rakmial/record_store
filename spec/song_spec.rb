@@ -66,8 +66,15 @@ describe('#Song') do
     end
   end
 
+  describe('find_by_album') do
+    it('finds an array of songs from album of album_id') do
+      expect(Song.find_by_album(@album.id).to(eq([@song])))
+      expect(Song.find_by_album(@album2.id).to(eq([@song2])))
+    end
+  end
+
   # Instance methods --- 
-  
+
   describe('#save') do
     it('saves a song to songs hash') do
       song3 = Song.new("Man Tap", @album2.id, nil)
