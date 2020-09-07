@@ -13,23 +13,23 @@ class Song
     @id = id || @@total_rows += 1
   end
 #
-#  # Class methods
-#  def self.all
-#    @@albums.values
-#  end
-#
-#  def self.clear
-#    @@albums = {}
-#    @@total_rows = 0
-#  end
+  # Class methods
+  def self.all
+    @@songs.values
+  end
+
+  def self.clear
+    @@songs = {}
+    @@total_rows = 0
+  end
 #
 #  def self.find(id)
-#    @@albums[id]
+#    @@songs[id]
 #  end
 #
 #  # Instance methods
 #  def save
-#    @@albums[self.id] = Album.new(self.name, self.artist, self.year, self.genre, self.id)
+#    @@songs[self.id] = Song.new(self.name, self.artist, self.year, self.genre, self.id)
 #  end
 #
 #  def update(new_name, new_artist, new_year, new_genre)
@@ -40,7 +40,7 @@ class Song
 #  end
 #
 #  def delete
-#    @@albums.delete(self.id)
+#    @@songs.delete(self.id)
 #  end
 #
 #  def ==(other_album)
