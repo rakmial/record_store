@@ -51,15 +51,15 @@ describe('#Album') do
       expect(Album.find(album.id)).to(eq(album))
     end
   end
-#
-  #describe('#==') do
-  #  it('is the same if the attributes are the same') do
-  #    album = Album.new("Blue", nil)
-  #    album2 = Album.new("Blue", nil)
-  #    expect(album).to(eq(album2))
-  #  end
-  #end
-#
+
+  describe('#==') do
+    it('is the same if the attributes are the same') do
+      album = Album.new(name, artist, year, genre, nil)
+      album2 = Album.new(name, artist, year, genre, nil)
+      expect(album).to(eq(album2))
+    end
+  end
+
   #describe('#save') do
   #  it('saves an album to albums hash') do
   #    album = Album.new("Giant Steps", nil)

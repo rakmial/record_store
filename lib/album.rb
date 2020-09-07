@@ -41,7 +41,7 @@ class Album
     @@albums.delete(self.id)
   end
 
-  def ==(other_album)
-    self.name == other_album.name
-  end
+  #def ==(other_album)
+  #  self.name == other_album.name
+  #end
 end
