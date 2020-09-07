@@ -53,8 +53,8 @@ class Album
     (self.genre == other_album.genre)
   end
 
-  #def songs
-  #  Song.find_by_album(self.id)
-  #end
+  def songs
+    Song.find_by_album(self.id)
+  end
 
 end

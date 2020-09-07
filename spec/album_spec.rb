@@ -4,6 +4,7 @@ require('album')
 describe('#Album') do
   before(:each) do
     Album.clear
+    Song.clear
     @name = "Flower Boy"
     @artist = "Tyler the Creator"
     @year = 2016
