@@ -77,13 +77,13 @@ describe('#Song') do
 #     end
 #   end
 # 
-#   describe('#delete') do
-#     it('deletes an album by id') do
-#       @album.delete
-#       expect(Song.all).to(eq([@album2]))
-#     end
-#   end
-#   
+  describe('#delete') do
+    it('deletes a song by id') do
+      @song.delete
+      expect(Song.all).to(eq([@song2]))
+    end
+  end
+  
   describe('#==') do
     it('is the same song if the attributes are the same, ignoring id') do
       identical_song = Song.new(@song_name, @album.id, nil)
