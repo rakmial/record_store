@@ -23,9 +23,9 @@ class Song
     @@total_rows = 0
   end
 #
-#  def self.find(id)
-#    @@songs[id]
-#  end
+  def self.find(id)
+    @@songs[id]
+  end
 #
 #  # Instance methods
   def save

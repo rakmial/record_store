@@ -52,7 +52,7 @@ describe('#Song') do
   
   describe('.all') do
     it('returns an array of Song objects that have been saved') do
-      expect(Song.all).to(eq([@album, @album2]))
+      expect(Song.all).to(eq([@song, @song2]))
     end
   end
 
