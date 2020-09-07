@@ -48,13 +48,13 @@ describe('#Song') do
     end
   end
 
-  #describe('#save') do
-  #  it('saves a song to songs hash') do
-  #    song3 = Song.new("Man Tap", 2, nil)
-  #    song3.save
-  #    expect(Song.all).to(eq([@song,@song2,song3]))
-  #  end
-  #end
+  describe('#save') do
+    it('saves a song to songs hash') do
+      song3 = Song.new("Man Tap", 2, nil)
+      song3.save
+      expect(Song.all).to(eq([@song,@song2,song3]))
+    end
+  end
 # 
 #   describe('#update') do
 #     it('updates album attributes') do
