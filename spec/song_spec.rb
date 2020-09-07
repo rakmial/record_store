@@ -63,20 +63,18 @@ describe('#Song') do
       expect(Song.all).to(eq([@song,@song2,song3]))
     end
   end
-# 
-#   describe('#update') do
-#     it('updates album attributes') do
-#       album3 = Song.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
-#       album3.update(@name2, @artist2, @year2, @genre2)
-#       album3.save
-#       expect(album3.name).to(eq(@name2))
-#       expect(album3.artist).to(eq(@artist2))
-#       expect(album3.year).to(eq(@year2))
-#       expect(album3.genre).to(eq(@genre2))
-#       expect(Song.find(3)).to(eq(album3))
-#     end
-#   end
-# 
+
+  describe('#update') do
+    it('updates album attributes') do
+      song3 = Song.new("Diamond Dogs", 3, nil)
+      song3.update(@song_name2, @album2.id)
+      song3.save
+      expect(song3.name).to(eq(@song_name2))
+      expect(song3.album_id).to(eq(@album2.id))
+      expect(Song.find(3)).to(eq(song3))
+    end
+  end
+
   describe('#delete') do
     it('deletes a song by id') do
       @song.delete
