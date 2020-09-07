@@ -1,33 +1,40 @@
-# require('rspec')
-# require('album')
-# 
-# describe('#Album') do
-#   before(:each) do
-#     Album.clear
-#     @name = "Flower Boy"
-#     @artist = "Tyler the Creator"
-#     @year = 2016
-#     @genre = "Hip Hop"
-#     @album = Album.new(@name, @artist, @year, @genre, nil)
-#     @album.save
-#     
-#     @name2 = "Longjohns Boots and a Belt"
-#     @artist2 = "The Devil Makes Three"
-#     @year2 = 2004
-#     @genre2 = "Folk Rock"
-#     @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
-#     @album2.save
-#   end
-#   
-# 
-#   it('initializes with reader attributes name, artist, year, genre, id') do
-#     expect(@album.name).to(eq(@name))
-#     expect(@album.artist).to(eq(@artist))
-#     expect(@album.year).to(eq(@year))
-#     expect(@album.genre).to(eq(@genre))
-#     expect(@album.id).to(eq(1)) # id increments on init
-#     expect(@album2.id).to(eq(2))
-#   end
+ require('rspec')
+ require('song')
+ require('album')
+ require('pry')
+ 
+ describe('#Song') do
+
+   before(:each) do
+     Album.clear
+     #Song.clear
+
+     @name = "Flower Boy"
+     @artist = "Tyler the Creator"
+     @year = 2016
+     @genre = "Hip Hop"
+     @album = Album.new(@name, @artist, @year, @genre, nil)
+     @album.save
+     @song_name = "Garden Shed"
+     @song = Song.new(@song_name, @album.id, nil)
+     
+     @name2 = "Longjohns Boots and a Belt"
+     @artist2 = "The Devil Makes Three"
+     @year2 = 2004
+     @genre2 = "Folk Rock"
+     @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
+     @album2.save
+     @song_name2 = "Never Learn"
+     @song2 = Song.new(@song_name, @album2.id, nil)
+
+   end
+   
+   it('initializes with accessor attributes name, album_id, and reader attr id') do
+     expect(@song.name).to(eq(@song_name))
+     expect(@song.album_id).to(eq(@album.id))
+     expect(@song.id).to(eq(1)) # id increments on init
+     expect(@song2.id).to(eq(2))
+   end
 # 
 #   describe('#save') do
 #     it('saves an album to albums hash') do
@@ -90,4 +97,4 @@
 #       expect(Album.find(@album2.id)).to(eq(@album2))
 #     end
 #   end
-# end 
+end 

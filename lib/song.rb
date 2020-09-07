@@ -1,18 +1,17 @@
-#class Album
-#  attr_reader :name, :artist, :year, :genre, :id
-#  
-#  # Class variables
-#  @@albums = {}
-#  @@total_rows = 0
-#
-#  # Constructor
-#  def initialize name, artist, year, genre, id
-#    @name = name
-#    @artist = artist
-#    @year = year
-#    @genre = genre
-#    @id = id || @@total_rows += 1
-#  end
+class Song
+  attr_reader :id
+  attr_accessor :name, :album_id 
+  
+  # Class variables
+  @@songs = {}
+  @@total_rows = 0
+
+  # Constructor
+  def initialize name, album_id, id
+    @name = name
+    @album_id = album_id
+    @id = id || @@total_rows += 1
+  end
 #
 #  # Class methods
 #  def self.all
@@ -50,4 +49,4 @@
 #    (self.year == other_album.year) &&
 #    (self.genre == other_album.genre)
 #  end
-#end
+end
