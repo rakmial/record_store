@@ -24,9 +24,9 @@ class Album
     @@total_rows = 0
   end
 
-  #def self.find(id)
-  #  @@albums[id]
-  #end
+  def self.find(id)
+    @@albums[id]
+  end
 
   # Instance methods
   def save
