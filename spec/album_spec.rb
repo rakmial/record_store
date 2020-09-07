@@ -10,7 +10,12 @@ describe('#Album') do
   artist = "Tyler the Creator"
   year = 2016
   genre = "Hip Hop"
-  
+
+  name2 = "Longjohns Boots and a Belt"
+  artist2 = "The Devil Makes Three"
+  year2 = 2004
+  genre2 = "Folk Rock"
+
   it('initializes with reader attributes name, artist, year, genre, id') do
     newAlbum = Album.new(name, artist, year, genre, nil)
     expect(newAlbum.name).to(eq(name))
@@ -26,16 +31,16 @@ describe('#Album') do
     end
   end
 
-  #describe('.clear') do
-  #  it('clears albums from hash') do
-  #    album = Album.new("Giant Steps", nil)
-  #    album.save
-  #    album2 = Album.new("Iowa", nil)
-  #    album2.save
-  #    Album.clear
-  #    expect(Album.all).to(eq([]))
-  #  end
-  #end
+  describe('.clear') do
+    it('clears albums from hash') do
+      album = Album.new(name, artist, year, genre, nil)
+      album.save
+      album2 = Album.new(name2, artist2, year2, genre2, nil)
+      album2.save
+      Album.clear
+      expect(Album.all).to(eq([]))
+    end
+  end
 #
   #describe('.find') do
   #  it('returns album by id') do
