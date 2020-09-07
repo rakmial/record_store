@@ -56,4 +56,8 @@ class Song
     (self.name == other_song.name) &&
     (self.album_id == other_song.album_id)
   end
+
+  def album
+    Album.find(self.album_id)
+  end
 end

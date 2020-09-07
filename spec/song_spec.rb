@@ -113,6 +113,4 @@ describe('#Song') do
       expect(@song.album).to(eq(@album))
     end
   end
-
-
 end 
