@@ -1,6 +1,7 @@
 require('sinatra')
 require('sinatra/reloader')
 require('./lib/album')
+require('./lib/song')
 require('pry')
 also_reload('lib/**/*.rb')
 
@@ -49,6 +50,34 @@ delete('/albums/:id') do
   @albums = Album.all
   erb(:albums)
 end
+
+get('/albums/:id/songs/:song_id') do
+  @song = Song.find(params[:song_id].to_i)
+  erb(:song)
+end
+
+post('/albums/:id/songs') do
+  @album = Album.find(params[:id].to_i)
+  song = Song.new(params[:song_name], @album.id, nil)
+  song.save
+  erb(:album)
+end
+
+patch('/albums/:id/songs/:song_id') do
+  @album = Album.find(params[:id].to_i)
+  song = Song.find(params[:song_id].to_i)
+  song.update(params[:name], @album.id)
+  erb(:album)
+end
+
+delete('/albums/:id/songs/:song_id') do
+  song = Song.find(params[:id].to_i)
+  song.delete
+  @album = Album.find(params[:id].to_i)
+  erb(:album)
+end
+
+# Custom Routes
 
 get('/test') do
   @something = "this is a variable"
