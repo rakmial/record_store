@@ -108,4 +108,16 @@ describe('#Album') do
       expect(Album.find(@album2.id)).to(eq(@album2))
     end
   end
+
+  describe('.search') do
+    it('returns array of albums with name, artist, year, or genre \
+      containing search term') do
+      expect(Album.search("Flower", "name")).to(eq([@album]))
+      expect(Album.search("The Devil Makes Three", "artist")).to(eq([@album2]))
+      expect(Album.search("20", "year")).to(eq([@album,@album2]))
+      expect(Album.search("Hip Hop", "genre")).to(eq([@album]))
+      expect(Album.search("country", "genre")).to(eq([]))
+    end
+  end
+
 end

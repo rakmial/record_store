@@ -29,6 +29,17 @@ class Album
     @@albums[id]
   end
 
+  #def self.search(search_term, option)
+  #  case option
+  #  when "name"
+  #    @@albums.values.select(|a| a.name.include?(search_term))
+  #  when "artist"
+  #    @@albums.values.select(|a| a.artist.include?(search_term))
+  #  when "year"
+  #    @@albums.values.select(|a| a.year.to_s.include?(search_term))
+  #  when "genre"
+  #    @@albums.values.select(|a| a.genre.include?(search_term))
+
   # Instance methods
   def save
     @@albums[self.id] = Album.new(self.name, self.artist, self.year, self.genre, self.id)
