@@ -25,13 +25,19 @@ get('/albums/:id') do
 end
 
 post('/albums') do
-  name = params[:album_name]
-  artist = params[:album_artist]
-  year = params[:album_year].to_i
-  genre = params[:album_genre]
-  album = Album.new(name, artist, year, genre, nil)
-  album.save()
-  @albums = Album.all()
+  if params[:album_name]
+    name = params[:album_name]
+    artist = params[:album_artist]
+    year = params[:album_year].to_i
+    genre = params[:album_genre]
+    album = Album.new(name, artist, year, genre, nil)
+    album.save()
+    @albums = Album.all()
+  elsif params[:search]
+    @albums = Album.search(params[:search], params[:search_by])
+  elsif params[:sort_by]
+    @albums = Album.sort(params[:sort_by])
+  end
   erb(:albums)
 end
 

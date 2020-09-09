@@ -32,13 +32,26 @@ class Album
   def self.search(search_term, option)
     case option
     when "name"
-      @@albums.values.select {|a| a.name.include?(search_term)}
+      @@albums.values.select {|a| a.name.include?(search_term)} 
     when "artist"
       @@albums.values.select {|a| a.artist.include?(search_term)}
     when "year"
       @@albums.values.select {|a| a.year.to_s.include?(search_term)}
     when "genre"
       @@albums.values.select {|a| a.genre.include?(search_term)}
+    end
+  end
+
+  def self.sort(option)
+    case option
+    when "name"
+      @@albums.values.sort_by(&:name)
+    when "artist"
+      @@albums.values.sort_by(&:artist)
+    when "year"
+      @@albums.values.sort_by(&:year)
+    when "genre"
+      @@albums.values.sort_by(&:genre)
     end
   end
 
