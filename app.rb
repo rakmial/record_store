@@ -54,7 +54,7 @@ patch('/albums/:id') do
   genre = params[:genre]
   @album.update(name, artist, year, genre)
   @albums = Album.all
-  erb(:albums)
+  erb(:album)
 end
 
 delete('/albums/:id') do
@@ -77,10 +77,9 @@ post('/albums/:id/songs') do
 end
 
 patch('/albums/:id/songs/:song_id') do
-  @album = Album.find(params[:id].to_i)
-  song = Song.find(params[:song_id].to_i)
-  song.update(params[:name], @album.id)
-  erb(:album)
+  @song = Song.find(params[:song_id].to_i)
+  @song.update(params[:name], @song.album_id)
+  erb(:song)
 end
 
 delete('/albums/:id/songs/:song_id') do

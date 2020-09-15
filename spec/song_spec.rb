@@ -4,7 +4,6 @@ require('album')
 require('pry')
  
 describe('#Song') do
-
   before(:each) do
     Album.clear
     Song.clear
