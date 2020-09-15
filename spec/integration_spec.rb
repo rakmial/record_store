@@ -128,6 +128,54 @@ end
     end
   end
 
+  describe('user may use sorting dropdown to sort by different album fields', 
+    {:type => :feature}) do
+    it('can sort by album name') do
+      visit('/albums')
+      select('Album Name', from: 'sort_by')
+      click_on('Sort!')
+      within "li.record:nth-child(1)" do
+        expect(page).to(have_content('Flower Boy'))
+      end
+      within "li.record:nth-child(2)" do
+        expect(page).to(have_content('Kind of Blue'))
+      end
+    end
+    it('can sort by artist name') do
+      visit('/albums')
+      select('Artist Name', from: 'sort_by')
+      click_on('Sort!')
+      within "li.record:nth-child(1)" do
+        expect(page).to(have_content('Kind of Blue'))
+      end
+      within "li.record:nth-child(2)" do
+        expect(page).to(have_content('Flower Boy'))
+      end
+    end
+    it('can sort by album year') do
+      visit('/albums')
+      select('Release Year', from: 'sort_by')
+      click_on('Sort!')
+      within "li.record:nth-child(1)" do
+        expect(page).to(have_content('Kind of Blue'))
+      end
+      within "li.record:nth-child(2)" do
+        expect(page).to(have_content('Flower Boy'))
+      end
+    end
+    it('can sort by genre') do
+      visit('/albums')
+      select('Genre', from: 'sort_by')
+      click_on('Sort!')
+      within "li.record:nth-child(1)" do
+        expect(page).to(have_content('Kind of Blue'))
+      end
+      within "li.record:nth-child(2)" do
+        expect(page).to(have_content('Flower Boy'))
+      end
+    end
+  end
+
 
 # 
 # describe('create a song path', {:type => :feature}) do
@@ -142,9 +190,6 @@ end
 # end
 
 #  Integrations Specification
-#
-#* User may use the search bar in '/' or '/albums' to filter available albums by 
-#  criteria selected from the dropdown menu.
 #
 #* User may use the sort button in '/' or '/albums' to sort the albums list by 
 #  criteria selected from dropdown menu.

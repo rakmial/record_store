@@ -32,7 +32,7 @@
 <% if @albums.any? %>
   <ul>
     <% @albums.each do |album| %>
-      <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+      <li class="record"><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
     <% end %>
   </ul>
 <% else %>
