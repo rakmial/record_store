@@ -14,14 +14,14 @@
 
   <label for="genre">Change genre</label>
   <input id="genre" name="genre" type="text" value="<%= @album.genre %>">
-  
+
   <button type="submit">Update album</button>
 </form>
 
-<form action="/albums/<%= @album.id %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete album</button>
-</form>
+<!-- <form action="/albums/<%= @album.id %>" method="post"> -->
+<!--   <input name="_method" type="hidden" value="delete"> -->
+<!--  -->
+<!--   <button type="submit">Delete album</button> -->
+<!-- </form> -->
 
 <p><a href="/albums">Return to album list</a></p>

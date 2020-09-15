@@ -74,6 +74,16 @@ end
     end
   end
 
+  describe('user may delete an album, returns to main albums page', 
+    {:type => :feature}) do
+    it('deletes an album') do
+      visit('/albums/2')
+      click_on('Edit album')
+      click_on('Delete album')
+      expect(page).to(!have_content('Miles Ahead'))
+    end
+  end
+
 # 
 # describe('create a song path', {:type => :feature}) do
 #   it('creates an album, creates a song, then goes to album page') do
@@ -87,20 +97,6 @@ end
 # end
 
 #  Integrations Specification
-#
-#* paths '/' and '/albums' both route user to albums.erb, which should start out 
-#  displaying no albums, ie displaying the text "There are currently no records 
-#  to display."
-#
-#* User may create new album, which creates an album path. Album is filled in with 
-#  name, artist, year, and genre. When submitted, user is taken to album page.
-#
-#* When user returns to '/' or '/albums' homepage, the previously-created album will
-#  be displayed. User may create a second album, which will take user to second album
-#  page on submission.
-#
-#* User may edit albums to update album information. Submission of edited information
-#  will return user to album page to display updated information. 
 #  
 #* User may find a button to delete an album from the albums store in the edit link. 
 #  Deleting an album removes it from the store and takes user to main albums page.
