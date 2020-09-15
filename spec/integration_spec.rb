@@ -22,15 +22,21 @@ describe('#app') do
   end
 end
 
-# describe('create an album path', {:type => :feature}) do
-#   it('creates an album and then goes to the album page') do
-#     visit('/albums')
-#     click_on('Add new album')
-#     fill_in('album_name', :with  => 'Yellow Submarine')
-#     click_on('Go!')
-#     expect(page).to(have_content('Yellow Submarine'))
-#   end
-# end
+  describe('create an album', {:type => :feature}) do
+    it('creates an album and then goes to the album page') do
+      visit('/albums')
+      click_on('Add new album')
+      fill_in('album_name', :with  => 'Flower Boy')
+      fill_in('album_artist', :with  => 'Tyler, the Creator')
+      fill_in('album_year', :with  => '2017')
+      fill_in('album_genre', :with  => 'Hip Hop')
+      click_on('Go!')
+      expect(page).to(have_content('Flower Boy'))
+      expect(page).to(have_content('Tyler, the Creator'))
+      expect(page).to(have_content('2017'))
+      expect(page).to(have_content('Hip Hop'))
+    end
+  end
 # 
 # describe('create a song path', {:type => :feature}) do
 #   it('creates an album, creates a song, then goes to album page') do
