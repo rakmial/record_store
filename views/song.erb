@@ -10,10 +10,10 @@
   <button type="submit">Update Song</button>
 </form>
 
-<form action="/albums/<%= @song.album.id %>/songs/<%= @song.id %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete song</button>
-</form>
+<!-- <form action="/albums/<%= @song.album.id %>/songs/<%= @song.id %>" method="post"> -->
+<!--   <input name="_method" type="hidden" value="delete"> -->
+<!--  -->
+<!--   <button type="submit">Delete song</button> -->
+<!-- </form> -->
 
 <a href="/albums/<%= @song.album.id %>">Back to <%= @song.album.name %></a>

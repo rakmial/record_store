@@ -196,6 +196,11 @@ describe('#app') do
       click_on('Update Song')
       expect(page).to(have_content('Boredom'))
     end
+    it('provides for song deletion on the song page') do
+      visit('/albums/1/songs/1')
+      click_on('Delete song')
+      expect(page).not_to(have_content('Boredom'))
+    end
   end
 end
 
