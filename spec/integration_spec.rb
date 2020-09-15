@@ -21,7 +21,6 @@ describe('#app') do
       expect(page).to(have_content("There are currently no records to display."))
     end
   end
-end
 
   describe('create an album', {:type => :feature}) do
     it('creates an album and then goes to the album page') do
@@ -176,23 +175,19 @@ end
     end
   end
 
-
-# 
-# describe('create a song path', {:type => :feature}) do
-#   it('creates an album, creates a song, then goes to album page') do
-#     album = Album.new("Revolver", "The Beatles", 1966, "Rock", nil)
-#     album.save
-#     visit("/albums/#{album.id}")
-#     fill_in('song_name', :with => 'Yellow Submarine')
-#     click_on('Add song')
-#     expect(page).to(have_content('Yellow Submarine'))
-#   end
-# end
+  describe('user may add songs to albums, and album pages will list songs', 
+  {:type => :feature}) do
+    it('allows user to make a song on an album') do
+      visit('/albums')
+      click_on('Flower Boy')
+      fill_in('song_name', :with => "Garden Shed")
+      click_on('Add song')
+      expect(page).to(have_content("Garden Shed"))
+    end
+  end
+end
 
 #  Integrations Specification
-#
-#* User may use the sort button in '/' or '/albums' to sort the albums list by 
-#  criteria selected from dropdown menu.
 #
 #* On an album's page, user may add new songs to that album. Songs created will be
 #  displayed on a list in the album's page.
