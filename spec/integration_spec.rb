@@ -1,4 +1,5 @@
 require('capybara/rspec')
+require('pry')
 require('./app')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
@@ -95,28 +96,31 @@ end
       fill_in('album_genre', :with  => 'Cool Jazz')
       click_on('Go!')
       click_on('Return to album list')
-      select('Album Name', :from => "search_by")
+      select('Album Name', from: "search_by")
       fill_in('search', :with => 'Kind of Blue')
       click_on('Go!')
       expect(page).to(have_content('Kind of Blue'))
       expect(page).not_to(have_content('Flower Boy'))
     end
     it('filters by album artist') do
-      select('Artist Name', :from => "search_by")
+      visit('/albums')
+      select('Artist Name', from: "search_by")
       fill_in('search', :with => 'Tyler, the Creator')
       click_on('Go!')
       expect(page).not_to(have_content('Kind of Blue'))
       expect(page).to(have_content('Flower Boy'))
     end
     it('filters by album year') do
-      select('Release Year', :from => 'search_by')
+      visit('/albums')
+      select('Release Year', from: 'search_by')
       fill_in('search', :with => '19')
       click_on('Go!')
       expect(page).to(have_content('Kind of Blue'))
       expect(page).not_to(have_content('Flower Boy'))
     end
     it('filters by genre') do
-      select('Genre', :from => 'search_by')
+      visit('/albums')
+      select('Genre', from: 'search_by')
       fill_in('search', :with => 'Hip Hop')
       click_on('Go!')
       expect(page).not_to(have_content('Kind of Blue'))
