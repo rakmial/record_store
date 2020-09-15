@@ -202,6 +202,13 @@ describe('#app') do
       expect(page).not_to(have_content('Boredom'))
     end
   end
+
+  describe('special routes', {:type => :feature}) do
+    it('provides a special route for contacting site owner') do
+      visit('/contact_us')
+      expect(page).to(have_content('sewer grate'))
+    end
+  end
 end
 
 #  Integrations Specification
