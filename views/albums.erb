@@ -29,14 +29,14 @@
   <button type="submit" class="btn">Sort!</button>
 </form>
 
-<% if @albums.any? %>
-  <ul>
-    <% @albums.each do |album| %>
-      <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
-    <% end %>
-  </ul>
-<% else %>
+<!-- <% if @albums.any? %> -->
+<!--   <ul> -->
+<!--     <% @albums.each do |album| %> -->
+<!--       <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li> -->
+<!--     <% end %> -->
+<!--   </ul> -->
+<!-- <% else %> -->
   <p>There are currently no records to display.</p>
-<% end %>
+<!-- <% end %> -->
 
 <a href="/albums/new">Add new album</a>

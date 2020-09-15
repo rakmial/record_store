@@ -37,6 +37,27 @@ end
       expect(page).to(have_content('Hip Hop'))
     end
   end
+
+  describe('return to /albums, find previously created album, create second', 
+    {:type => :feature}) do
+      it('finds created album listed on /albums') do
+        visit('/albums')
+        expect(page).to(have_content('Flower Boy'))
+      end
+      it('creates a second album, taken to second album page on submit') do
+        visit('/albums')
+        click_on('Add new album')
+        fill_in('album_name', :with  => 'Kind of Blue')
+        fill_in('album_artist', :with  => 'Miles Davis')
+        fill_in('album_year', :with  => '1959')
+        fill_in('album_genre', :with  => 'Cool Jazz')
+        click_on('Go!')
+        expect(page).to(have_content('Kind of Blue'))
+        expect(page).to(have_content('Miles Davis'))
+        expect(page).to(have_content('1959'))
+        expect(page).to(have_content('Cool Jazz'))
+      end
+    end
 # 
 # describe('create a song path', {:type => :feature}) do
 #   it('creates an album, creates a song, then goes to album page') do
