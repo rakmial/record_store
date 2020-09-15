@@ -84,6 +84,47 @@ end
     end
   end
 
+  describe('user may use search bar in / or /albums to filter available albums 
+    by criteria in dropdown menu', {:type => :feature}) do
+    it('filters by album name') do
+      visit('/albums')
+      click_on('Add new album') # Add 2nd album to compare search results
+      fill_in('album_name', :with  => 'Kind of Blue')
+      fill_in('album_artist', :with  => 'Miles Davis')
+      fill_in('album_year', :with  => '1959')
+      fill_in('album_genre', :with  => 'Cool Jazz')
+      click_on('Go!')
+      click_on('Return to album list')
+      select('Album Name', :from => "search_by")
+      fill_in('search', :with => 'Kind of Blue')
+      click_on('Go!')
+      expect(page).to(have_content('Kind of Blue'))
+      expect(page).not_to(have_content('Flower Boy'))
+    end
+    it('filters by album artist') do
+      select('Artist Name', :from => "search_by")
+      fill_in('search', :with => 'Tyler, the Creator')
+      click_on('Go!')
+      expect(page).not_to(have_content('Kind of Blue'))
+      expect(page).to(have_content('Flower Boy'))
+    end
+    it('filters by album year') do
+      select('Release Year', :from => 'search_by')
+      fill_in('search', :with => '19')
+      click_on('Go!')
+      expect(page).to(have_content('Kind of Blue'))
+      expect(page).not_to(have_content('Flower Boy'))
+    end
+    it('filters by genre') do
+      select('Genre', :from => 'search_by')
+      fill_in('search', :with => 'Hip Hop')
+      click_on('Go!')
+      expect(page).not_to(have_content('Kind of Blue'))
+      expect(page).to(have_content('Flower Boy'))
+    end
+  end
+
+
 # 
 # describe('create a song path', {:type => :feature}) do
 #   it('creates an album, creates a song, then goes to album page') do
@@ -97,9 +138,6 @@ end
 # end
 
 #  Integrations Specification
-#  
-#* User may find a button to delete an album from the albums store in the edit link. 
-#  Deleting an album removes it from the store and takes user to main albums page.
 #
 #* User may use the search bar in '/' or '/albums' to filter available albums by 
 #  criteria selected from the dropdown menu.
