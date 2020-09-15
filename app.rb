@@ -54,7 +54,6 @@ patch('/albums/:id') do
   year = params[:year]
   genre = params[:genre]
   @album.update(name, artist, year, genre)
-  @albums = Album.all
   erb(:album)
 end
 

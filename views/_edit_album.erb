@@ -14,6 +14,8 @@
 
   <label for="genre">Change genre</label>
   <input id="genre" name="genre" type="text" value="<%= @album.genre %>">
+  
+  <button type="submit">Update album</button>
 </form>
 
 <form action="/albums/<%= @album.id %>" method="post">
