@@ -30,15 +30,16 @@ post('/albums') do
     artist = params[:album_artist]
     year = params[:album_year].to_i
     genre = params[:album_genre]
-    album = Album.new(name, artist, year, genre, nil)
-    album.save()
-    @albums = Album.all()
+    @album = Album.new(name, artist, year, genre, nil)
+    @album.save()
+    erb(:album)
   elsif params[:search]
     @albums = Album.search(params[:search], params[:search_by])
+    erb(:albums)
   elsif params[:sort_by]
     @albums = Album.sort(params[:sort_by])
+    erb(:albums)
   end
-  erb(:albums)
 end
 
 get('/albums/:id/edit') do
