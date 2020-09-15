@@ -80,7 +80,7 @@ end
       visit('/albums/2')
       click_on('Edit album')
       click_on('Delete album')
-      expect(page).to(!have_content('Miles Ahead'))
+      expect(page).not_to(have_content('Miles Ahead'))
     end
   end
 
