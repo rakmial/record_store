@@ -184,13 +184,16 @@ describe('#app') do
       click_on('Add song')
       expect(page).to(have_content("Garden Shed"))
     end
+    it('allows user to visit individual song pages by clicking on song link') do
+      visit('/albums/1')
+      click_on('Garden Shed')
+      expect(page).to(have_content("Flower Boy"))
+      expect(page).to(have_content("Garden Shed"))
+    end
   end
 end
 
 #  Integrations Specification
-#
-#* On an album's page, user may add new songs to that album. Songs created will be
-#  displayed on a list in the album's page.
 #
 #* Songs have their own pages, displaying song and album names. User may update 
 #  the song's name or delete the song. Updating a song returns user to the song
