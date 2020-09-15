@@ -190,6 +190,12 @@ describe('#app') do
       expect(page).to(have_content("Flower Boy"))
       expect(page).to(have_content("Garden Shed"))
     end
+    it('gives the user ability to update song name') do
+      visit('/albums/1/songs/1')
+      fill_in('name', :with => 'Boredom')
+      click_on('Update Song')
+      expect(page).to(have_content('Boredom'))
+    end
   end
 end
 
