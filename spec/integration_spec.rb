@@ -210,11 +210,3 @@ describe('#app') do
     end
   end
 end
-
-#  Integrations Specification
-#
-#* Songs have their own pages, displaying song and album names. User may update 
-#  the song's name or delete the song. Updating a song returns user to the song
-#  page, and deleting returns user to album page.
-#
-#* Special route '/contact_us' is provided.

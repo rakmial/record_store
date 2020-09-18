@@ -6,8 +6,7 @@ require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
-  @albums = Album.all
-  erb(:albums)
+  redirect to '/albums'
 end
 
 get('/albums') do
@@ -60,8 +59,7 @@ end
 delete('/albums/:id') do
   album = Album.find(params[:id].to_i)
   album.delete
-  @albums = Album.all
-  erb(:albums)
+  redirect to '/albums'
 end
 
 get('/albums/:id/songs/:song_id') do
@@ -90,15 +88,6 @@ delete('/albums/:id/songs/:song_id') do
 end
 
 # Custom Routes
-
-get('/test') do
-  @something = "this is a variable"
-  erb(:whatever)
-end
-
-get('/custom_route') do
-  "Custom routes are available but should only be used when needed."
-end
 
 get('/contact_us') do
   "Set a fire in a Barney's, and I will crawl out from a nearby sewer grate."
