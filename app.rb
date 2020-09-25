@@ -6,11 +6,15 @@ require('pry')
 require('pg')
 also_reload('lib/**/*.rb')
 
-# DB = PG.connect({:dbname => "record_store"})
+DB = PG.connect({:dbname => "record_store"})
+
+# Root route
 
 get('/') do
   redirect to '/albums'
 end
+
+# Album routes
 
 get('/albums') do
   @albums = Album.all
@@ -27,21 +31,10 @@ get('/albums/:id') do
 end
 
 post('/albums') do
-  if params[:album_name]
-    name = params[:album_name]
-    artist = params[:album_artist]
-    year = params[:album_year].to_i
-    genre = params[:album_genre]
-    @album = Album.new(name, artist, year, genre, nil)
-    @album.save()
-    erb(:album)
-  elsif params[:search]
-    @albums = Album.search(params[:search], params[:search_by])
-    erb(:albums)
-  elsif params[:sort_by]
-    @albums = Album.sort(params[:sort_by])
-    erb(:albums)
-  end
+  name = params[:album_name]
+  @album = Album.new({:name => name, :id => nil})
+  @album.save()
+  erb(:album)
 end
 
 get('/albums/:id/edit') do
@@ -52,10 +45,7 @@ end
 patch('/albums/:id') do
   @album = Album.find(params[:id].to_i())
   name = params[:name]
-  artist = params[:artist]
-  year = params[:year]
-  genre = params[:genre]
-  @album.update(name, artist, year, genre)
+  @album.update(name)
   erb(:album)
 end
 
@@ -64,6 +54,8 @@ delete('/albums/:id') do
   album.delete
   redirect to '/albums'
 end
+
+# Song routes
 
 get('/albums/:id/songs/:song_id') do
   @song = Song.find(params[:song_id].to_i)
@@ -88,6 +80,54 @@ delete('/albums/:id/songs/:song_id') do
   song.delete
   @album = Album.find(params[:id].to_i)
   erb(:album)
+end
+
+# Artist Routes
+
+get('/artists') do
+  @artists = Artist.all
+  erb(:artists)
+end
+
+get('/artists/new') do
+  erb(:new_artist)
+end
+
+get('/artists/:id') do
+  @artist = Artist.find(params[:id].to_i)
+  erb(:artist)
+end
+
+post('/artists') do
+  name = params[:artist_name]
+  @artist = Artist.new({:name => name, :id => nil})
+  @artist.save()
+  erb(:artist)
+end
+
+get('/artists/:id/edit') do
+  @artist = Artist.find(params[:id].to_i())
+  erb(:edit_artist)
+end
+
+patch('/artists/:id') do
+  @artist = Artist.find(params[:id].to_i())
+  if name = params[:name]
+    if album_name = params[:album_name]
+      @artist.update({:name => name, :album_name => album_name})
+    else
+      @artist.update({:name => name})
+    end
+  elsif album_name = params[:album_name]
+    @artist.update({:album_name => album_name})
+  end
+  erb(:artist)
+end
+
+delete('/artists/:id') do
+  artist = Artist.find(params[:id].to_i)
+  artist.delete
+  redirect to '/artists'
 end
 
 # Custom Routes
