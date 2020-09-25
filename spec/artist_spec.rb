@@ -27,9 +27,15 @@ describe('#Artist') do
     it('updates artist attributes') do
       artist3 = Artist.new({:name => "David Bowie", :id => nil})
       artist3.save
-      artist3.update(@name2)
+      artist3.update({:name => @name2})
       expect(artist3.name).to(eq(@name2))
       expect(Artist.find(artist3.id)).to(eq(artist3))
+    end
+    it('associates new albums to artists') do
+      album = Album.new({:name => "Flower Boy", :id => nil})
+      album.save
+      @artist.update({:album_name => "Flower Boy"})
+      expect(@artist.albums).to(eq([album]))
     end
   end
 
