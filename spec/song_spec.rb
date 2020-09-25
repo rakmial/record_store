@@ -24,11 +24,10 @@ describe('#Song') do
   it('initializes with accessor attributes name, album_id, and reader attr id') do
     expect(@song.name).to(eq(@song_name))
     expect(@song.album_id).to(eq(@album.id))
-    #expect(@song.id).to(eq(1)) # id serial assigns on .save
   end
-#    
-#  # Class methods ---
-#
+    
+  # Class methods ---
+
   describe('.clear') do
     it('clears albums from Postgres DB') do
       Song.clear
@@ -86,13 +85,13 @@ describe('#Song') do
 #    end
 #  end
 #  
-#  describe('#==') do
-#    it('is the same song if the attributes are the same, ignoring id') do
-#      identical_song = Song.new(@song_name, @album.id, nil)
-#      expect(@song).to(eq(identical_song))
-#    end
-#  end
-#
+  describe('#==') do
+    it('is the same song if the attributes are the same, ignoring id') do
+      identical_song = Song.new({:name => @song_name, :album_id => @album.id, :id => nil})
+      expect(@song).to(eq(identical_song))
+    end
+  end
+
 #  describe('#album') do
 #    it('returns album object to which it belongs by id') do
 #      expect(@song.album).to(eq(@album))
