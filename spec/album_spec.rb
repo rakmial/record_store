@@ -5,7 +5,7 @@ describe('#Album') do
     @name = "Flower Boy"
     @album_attributes = {:name => @name, :id => nil}
     @album = Album.new(@album_attributes)
-    #@album.save
+    @album.save
     #@song_name = "Garden Shed"
     #@song_attributes = {:name => @song_name, :album_id => @album.id, :id => nil}
     #@song = Song.new(@song_attributes)
@@ -34,13 +34,13 @@ describe('#Album') do
 #
 #  # Instance methods ---
 #
-#  describe('#save') do
-#    it('saves an album to albums hash') do
-#      album3 = Album.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
-#      album3.save
-#      expect(Album.all).to(eq([@album,@album2,album3]))
-#    end
-#  end
+  describe('#save') do
+    it('saves an album to PostgreSQL database') do
+      album3 = Album.new({:name => "Diamond Dogs", :id => nil})
+      album3.save
+      expect(Album.all).to(eq([@album, album3]))
+    end
+  end
 #
 #  describe('#update') do
 #    it('updates album attributes') do
@@ -78,25 +78,23 @@ describe('#Album') do
 #
 #  # Class methods
 #
-#  describe('.clear') do
-#    it('clears albums from hash') do
-#      Album.clear
-#      expect(Album.all).to(eq([]))
-#    end
-#  end
-#  
-#  describe('.all') do
-#    it('is empty when no albums have been created or after .clear') do
-#      Album.clear
-#      expect(Album.all).to(eq([]))
-#    end
-#  end
-#
-#  describe('.all') do
-#    it('returns an array of Album objects that have been saved') do
-#      expect(Album.all).to(eq([@album, @album2]))
-#    end
-#  end
+  describe('.clear') do
+    it('clears albums from hash') do
+      Album.clear
+      expect(Album.all).to(eq([]))
+    end
+  end
+  
+  describe('.all') do
+    it('is empty when no albums have been created or after .clear') do
+      Album.clear
+      expect(Album.all).to(eq([]))
+    end
+    it('returns an array of Album objects that have been saved') do
+      @album = Album.new(@album_attributes)
+      expect(Album.all).to(eq([@album]))
+    end
+  end
 #
 #  describe('.find') do
 #    it('returns album by id') do

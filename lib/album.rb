@@ -10,12 +10,18 @@ class Album
 
   # Class methods
   def self.all
-    @@albums.values
+    pg_return = DB.exec("SELECT * FROM albums;")
+    albums = []
+    pg_return.each do |album|
+      name = album.fetch("name")
+      id = album.fetch("id").to_i
+      albums.push(Album.new({:name => name, :id => id}))
+    end
+    albums
   end
 
   def self.clear
-    @@albums = {}
-    @@total_rows = 0
+    DB.exec("DELETE FROM albums *;")
   end
 
   def self.find(id)
@@ -38,7 +44,8 @@ class Album
 
   # Instance methods
   def save
-    @@albums[self.id] = Album.new(self.name, self.artist, self.year, self.genre, self.id)
+    result = DB.exec("INSERT INTO albums (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first().fetch("id").to_i
   end
 
   def update(new_name, new_artist, new_year, new_genre)
