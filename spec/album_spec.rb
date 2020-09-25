@@ -96,12 +96,11 @@ describe('#Album') do
     end
   end
 #
-#  describe('.find') do
-#    it('returns album by id') do
-#      expect(Album.find(@album.id)).to(eq(@album))
-#      expect(Album.find(@album2.id)).to(eq(@album2))
-#    end
-#  end
+  describe('.find') do
+    it('returns album by id') do
+      expect(Album.find(@album.id)).to(eq(@album))
+    end
+  end
 #
 #  describe('.search') do
 #    it('returns array of albums with name, artist, year, or genre \
