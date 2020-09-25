@@ -6,18 +6,19 @@ describe('#Album') do
     @album_attributes = {:name => @name, :id => nil}
     @album = Album.new(@album_attributes)
     @album.save
-    #@song_name = "Garden Shed"
-    #@song_attributes = {:name => @song_name, :album_id => @album.id, :id => nil}
-    #@song = Song.new(@song_attributes)
-    #@song.save
+    @song_name = "Garden Shed"
+    @song_attributes = {:name => @song_name, :album_id => @album.id, :id => nil}
+    @song = Song.new(@song_attributes)
+    @song.save
     
     @name2 = "Longjohns Boots and a Belt"
     @album2_attributes = {:name => @name2, :id => nil}
     @album2 = Album.new(@album2_attributes)
     @album2.save
-    #@song_name2 = "Never Learn"
-    #@song2 = Song.new(@song_name2, @album2.id, nil)
-    #@song2.save
+    @song_name2 = "Never Learn"
+    @song2_attriburtes = {:name => @song_name2, :album_id => @album2.id, :id => nil}
+    @song2 = Song.new(@song2_attriburtes)
+    @song2.save
   end
 #  
 #
@@ -63,16 +64,16 @@ describe('#Album') do
       expect(@album).to(eq(identical_album))
     end
   end
-#
-#  describe('#songs') do
-#    it('returns an array of songs on the album') do
-#      expect(@album.songs).to(eq([@song]))
-#    end
-#  end
-#
-#
-#  # Class methods
-#
+
+  describe('#songs') do
+    it('returns an array of songs on the album') do
+      expect(@album.songs).to(eq([@song]))
+    end
+  end
+
+
+  # Class methods
+
   describe('.clear') do
     it('clears albums from hash') do
       Album.clear
