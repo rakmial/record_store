@@ -1,18 +1,11 @@
 class Album
-  attr_accessor :name, :artist, :year, :genre
+  attr_accessor :name
   attr_reader :id
-  
-  # Class variables
-  @@albums = {}
-  @@total_rows = 0
 
   # Constructor
-  def initialize name, artist, year, genre, id
-    @name = name
-    @artist = artist
-    @year = year
-    @genre = genre
-    @id = id || @@total_rows += 1
+  def initialize(attributes)
+    @name = attributes.fetch(:name)
+    @id = attributes.fetch(:id)
   end
 
   # Class methods
@@ -33,12 +26,6 @@ class Album
     case option
     when "name"
       @@albums.values.select {|a| a.name.include?(search_term)} 
-    when "artist"
-      @@albums.values.select {|a| a.artist.include?(search_term)}
-    when "year"
-      @@albums.values.select {|a| a.year.to_s.include?(search_term)}
-    when "genre"
-      @@albums.values.select {|a| a.genre.include?(search_term)}
     end
   end
 
@@ -46,12 +33,6 @@ class Album
     case option
     when "name"
       @@albums.values.sort_by(&:name)
-    when "artist"
-      @@albums.values.sort_by(&:artist)
-    when "year"
-      @@albums.values.sort_by(&:year)
-    when "genre"
-      @@albums.values.sort_by(&:genre)
     end
   end
 
@@ -73,14 +54,10 @@ class Album
   end
 
   def ==(other_album)
-    (self.name == other_album.name) &&
-    (self.artist == other_album.artist) &&
-    (self.year == other_album.year) &&
-    (self.genre == other_album.genre)
+    self.name == other_album.name
   end
 
   def songs
     Song.find_by_album(self.id)
   end
-
 end
