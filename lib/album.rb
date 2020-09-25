@@ -57,7 +57,7 @@ class Album
   end
 
   def delete
-    @@albums.delete(self.id)
+    DB.exec("DELETE FROM albums WHERE id = #{@id};")
   end
 
   def ==(other_album)

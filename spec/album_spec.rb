@@ -49,14 +49,14 @@ describe('#Album') do
       expect(Album.find(album3.id)).to(eq(album3))
     end
   end
-#
-#  describe('#delete') do
-#    it('deletes an album by id') do
-#      @album.delete
-#      expect(Album.all).to(eq([@album2]))
-#    end
-#  end
-#  
+
+  describe('#delete') do
+    it('deletes an album by id') do
+      @album.delete
+      expect(Album.all).to(eq([@album2]))
+    end
+  end
+  
   describe('#==') do
     it('is the same album if the attributes are the same, ignoring id') do
       identical_album = Album.new(@album_attributes)
