@@ -2,6 +2,7 @@ require('sinatra')
 require('sinatra/reloader')
 require('./lib/album')
 require('./lib/song')
+require('./lib/artist')
 require('pry')
 require('pg')
 also_reload('lib/**/*.rb')
@@ -11,7 +12,9 @@ DB = PG.connect({:dbname => "record_store"})
 # Root route
 
 get('/') do
-  redirect to '/albums'
+  @albums = Album.all
+  @artists = Artist.all
+  erb(:index)
 end
 
 # Album routes
@@ -64,7 +67,8 @@ end
 
 post('/albums/:id/songs') do
   @album = Album.find(params[:id].to_i)
-  song = Song.new(params[:song_name], @album.id, nil)
+  song = Song.new({:name => params[:song_name], 
+    :album_id => @album.id, :id => nil})
   song.save
   erb(:album)
 end
