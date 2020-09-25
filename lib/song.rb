@@ -30,7 +30,6 @@ class Song
 
   def self.find(id)
     pg_return = DB.exec("SELECT * FROM songs WHERE id = #{id};").first
-    binding.pry
     name = pg_return.fetch("name")
     alb_id = pg_return.fetch("album_id").to_i
     id = pg_return.fetch("id").to_i
@@ -53,9 +52,12 @@ class Song
   end
 
   def update(new_name, new_album_id)
-    self.name = new_name
-    self.album_id = new_album_id
-    self.save
+    @name = new_name
+    @album_id = new_album_id
+    DB.exec("\
+      UPDATE songs \
+      SET name = '#{@name}', album_id = #{@album_id} \
+      WHERE id = #{@id};")
   end
 
   def delete
