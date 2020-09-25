@@ -20,19 +20,9 @@ describe('#Album') do
     @song2 = Song.new(@song2_attriburtes)
     @song2.save
   end
-#  
-#
-#  it('initializes with reader attributes name, artist, year, genre, id') do
-#    expect(@album.name).to(eq(@name))
-#    expect(@album.artist).to(eq(@artist))
-#    expect(@album.year).to(eq(@year))
-#    expect(@album.genre).to(eq(@genre))
-#    expect(@album.id).to(eq(1)) # id increments on init
-#    expect(@album2.id).to(eq(2))
-#  end
-#
-#  # Instance methods ---
-#
+  
+  # Instance methods ---
+
   describe('#save') do
     it('saves an album to PostgreSQL database') do
       album3 = Album.new({:name => "Diamond Dogs", :id => nil})
@@ -52,9 +42,10 @@ describe('#Album') do
   end
 
   describe('#delete') do
-    it('deletes an album by id') do
+    it('deletes an album and associated songs by id') do
       @album.delete
       expect(Album.all).to(eq([@album2]))
+      expect(Song.find(@song.id)).to(eq(nil))
     end
   end
   

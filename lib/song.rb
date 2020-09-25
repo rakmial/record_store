@@ -30,10 +30,14 @@ class Song
 
   def self.find(id)
     pg_return = DB.exec("SELECT * FROM songs WHERE id = #{id};").first
-    name = pg_return.fetch("name")
-    alb_id = pg_return.fetch("album_id").to_i
-    id = pg_return.fetch("id").to_i
-    Song.new({:name => name, :album_id => alb_id, :id => id})
+    if pg_return
+      name = pg_return.fetch("name")
+      alb_id = pg_return.fetch("album_id").to_i
+      id = pg_return.fetch("id").to_i
+      Song.new({:name => name, :album_id => alb_id, :id => id})
+    else
+      nil
+    end
   end
 
   def self.find_by_album(alb_id)
@@ -70,8 +74,12 @@ class Song
   end
 
   def ==(other_song)
-    (self.name == other_song.name) &&
-    (self.album_id == other_song.album_id)
+    if other_song
+      (self.name == other_song.name) &&
+      (self.album_id == other_song.album_id)
+    else
+      false
+    end
   end
 
   def album
