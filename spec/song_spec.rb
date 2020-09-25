@@ -91,9 +91,9 @@ describe('#Song') do
     end
   end
 
-#  describe('#album') do
-#    it('returns album object to which it belongs by id') do
-#      expect(@song.album).to(eq(@album))
-#    end
-#  end
+  describe('#album') do
+    it('returns album object to which it belongs by id') do
+      expect(@song.album).to(eq(@album))
+    end
+  end
 end 
