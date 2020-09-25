@@ -1,34 +1,31 @@
 require 'spec_helper'
  
-#describe('#Song') do
-#  before(:each) do
-#    @name = "Flower Boy"
-#    @artist = "Tyler the Creator"
-#    @year = 2016
-#    @genre = "Hip Hop"
-#    @album = Album.new(@name, @artist, @year, @genre, nil)
-#    @album.save
-#    @song_name = "Garden Shed"
-#    @song = Song.new(@song_name, @album.id, nil)
-#    @song.save
-#    
-#    @name2 = "Longjohns Boots and a Belt"
-#    @artist2 = "The Devil Makes Three"
-#    @year2 = 2004
-#    @genre2 = "Folk Rock"
-#    @album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
-#    @album2.save
-#    @song_name2 = "Never Learn"
-#    @song2 = Song.new(@song_name2, @album2.id, nil)
-#    @song2.save
-#  end
-#
-#  it('initializes with accessor attributes name, album_id, and reader attr id') do
-#    expect(@song.name).to(eq(@song_name))
-#    expect(@song.album_id).to(eq(@album.id))
-#    expect(@song.id).to(eq(1)) # id increments on init
-#    expect(@song2.id).to(eq(2))
-#  end
+describe('#Song') do
+  before(:each) do
+    @name = "Flower Boy"
+    @album_attributes = {:name => @name, :id => nil}
+    @album = Album.new(@album_attributes)
+    @album.save
+    @song_name = "Garden Shed"
+    @song_attributes = {:name => @song_name, :album_id => @album.id, :id => nil}
+    @song = Song.new(@song_attributes)
+    #@song.save
+    
+    @name2 = "Longjohns Boots and a Belt"
+    @album2_attributes = {:name => @name2, :id => nil}
+    @album2 = Album.new(@album2_attributes)
+    @album2.save
+    @song_name2 = "Never Learn"
+    @song2_attributes = {:name => @song_name2, :album_id => @album2.id, :id => nil}
+    @song2 = Song.new(@song2_attributes)
+    #@song2.save
+  end
+
+  it('initializes with accessor attributes name, album_id, and reader attr id') do
+    expect(@song.name).to(eq(@song_name))
+    expect(@song.album_id).to(eq(@album.id))
+    expect(@song.id).to(eq(nil)) # id serial assigns on .save
+  end
 #    
 #  # Class methods ---
 #
@@ -107,4 +104,4 @@ require 'spec_helper'
 #      expect(@song.album).to(eq(@album))
 #    end
 #  end
-#end 
+end 

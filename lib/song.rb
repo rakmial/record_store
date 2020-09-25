@@ -3,16 +3,12 @@ require('pry')
 class Song
   attr_reader :id
   attr_accessor :name, :album_id 
-  
-  # Class variables
-  @@songs = {}
-  @@total_rows = 0
 
   # Constructor
-  def initialize name, album_id, id
-    @name = name
-    @album_id = album_id
-    @id = id || @@total_rows += 1
+  def initialize attributes
+    @name = attributes.fetch(:name)
+    @album_id = attributes.fetch(:album_id)
+    @id = attributes.fetch(:id)
   end
 
   # Class methods
