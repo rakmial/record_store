@@ -13,7 +13,15 @@ class Song
 
   # Class methods
   def self.all
-    @@songs.values
+    pg_return = DB.exec("SELECT * FROM songs;")
+    songs = []
+    pg_return.each do |song|
+      name = song.fetch("name")
+      album_id = song.fetch("album_id").to_i
+      id = song.fetch("id").to_i
+      songs.push(Song.new(:name => name, :album_id => album_id, :id => id))
+    end
+    songs
   end
 
   def self.clear
@@ -35,7 +43,9 @@ class Song
 
   # Instance methods
   def save
-    @@songs[self.id] = Song.new(self.name, self.album_id, self.id)
+    @id = DB.exec("INSERT INTO songs (name, album_id) \
+      VALUES ('#{@name}', #{@album_id}) RETURNING id;")
+      .first.fetch("id").to_i
   end
 
   def update(new_name, new_album_id)

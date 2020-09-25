@@ -9,7 +9,7 @@ describe('#Song') do
     @song_name = "Garden Shed"
     @song_attributes = {:name => @song_name, :album_id => @album.id, :id => nil}
     @song = Song.new(@song_attributes)
-    #@song.save
+    @song.save
     
     @name2 = "Longjohns Boots and a Belt"
     @album2_attributes = {:name => @name2, :id => nil}
@@ -18,13 +18,13 @@ describe('#Song') do
     @song_name2 = "Never Learn"
     @song2_attributes = {:name => @song_name2, :album_id => @album2.id, :id => nil}
     @song2 = Song.new(@song2_attributes)
-    #@song2.save
+    @song2.save
   end
 
   it('initializes with accessor attributes name, album_id, and reader attr id') do
     expect(@song.name).to(eq(@song_name))
     expect(@song.album_id).to(eq(@album.id))
-    expect(@song.id).to(eq(nil)) # id serial assigns on .save
+    #expect(@song.id).to(eq(1)) # id serial assigns on .save
   end
 #    
 #  # Class methods ---
@@ -35,19 +35,12 @@ describe('#Song') do
 #      expect(Song.all).to(eq([]))
 #    end
 #  end
-#
-#  describe('.all') do
-#    it('is empty when no songs have been created or after .clear') do
-#      Song.clear
-#      expect(Song.all).to(eq([]))
-#    end
-#  end
 #  
-#  describe('.all') do
-#    it('returns an array of Song objects that have been saved') do
-#      expect(Song.all).to(eq([@song, @song2]))
-#    end
-#  end
+  describe('.all') do
+    it('returns an array of Song objects that have been saved') do
+      expect(Song.all).to(eq([@song, @song2]))
+    end
+  end
 #
 #   
 #  describe('.find') do
@@ -66,13 +59,14 @@ describe('#Song') do
 #
 #  # Instance methods --- 
 #
-#  describe('#save') do
-#    it('saves a song to songs hash') do
-#      song3 = Song.new("Man Tap", @album2.id, nil)
-#      song3.save
-#      expect(Song.all).to(eq([@song,@song2,song3]))
-#    end
-#  end
+  describe('#save') do
+    it('saves a song to Postgres DB') do
+      song3_attributes = {:name => "Man Tap", :album_id => @album2.id, :id => nil}
+      song3 = Song.new(song3_attributes)
+      song3.save
+      expect(Song.all).to(eq([@song,@song2,song3]))
+    end
+  end
 #
 #  describe('#update') do
 #    it('updates album attributes') do
