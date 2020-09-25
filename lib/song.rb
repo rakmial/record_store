@@ -66,7 +66,7 @@ class Song
   end
 
   def delete
-    @@songs.delete(self.id)
+    DB.exec("DELETE FROM songs WHERE id = #{@id};")
   end
 
   def ==(other_song)
