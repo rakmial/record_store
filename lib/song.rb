@@ -37,9 +37,14 @@ class Song
   end
 
   def self.find_by_album(alb_id)
+    pg_return = DB.exec("\
+      SELECT * FROM songs \
+      WHERE album_id = #{alb_id};")
     songs = []
-    @@songs.values.each do |song|
-      songs.push(song) if song.album_id == alb_id
+    pg_return.each do |song|
+      name = song.fetch("name")
+      id = song.fetch("id").to_i
+      songs.push(Song.new({:name => name, :album_id => alb_id, :id => id}))
     end
     songs
   end
