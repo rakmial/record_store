@@ -29,13 +29,13 @@ describe('#Song') do
 #    
 #  # Class methods ---
 #
-#  describe('.clear') do
-#    it('clears albums from hash') do
-#      Song.clear
-#      expect(Song.all).to(eq([]))
-#    end
-#  end
-#  
+  describe('.clear') do
+    it('clears albums from Postgres DB') do
+      Song.clear
+      expect(Song.all).to(eq([]))
+    end
+  end
+  
   describe('.all') do
     it('returns an array of Song objects that have been saved') do
       expect(Song.all).to(eq([@song, @song2]))

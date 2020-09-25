@@ -25,8 +25,7 @@ class Song
   end
 
   def self.clear
-    @@songs = {}
-    @@total_rows = 0
+    DB.exec("DELETE FROM songs *;")
   end
 
   def self.find(id)
