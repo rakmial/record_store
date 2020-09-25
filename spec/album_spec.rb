@@ -11,12 +11,10 @@ describe('#Album') do
     #@song = Song.new(@song_attributes)
     #@song.save
     
-    #@name2 = "Longjohns Boots and a Belt"
-    #@artist2 = "The Devil Makes Three"
-    #@year2 = 2004
-    #@genre2 = "Folk Rock"
-    #@album2 = Album.new(@name2, @artist2, @year2, @genre2, nil)
-    #@album2.save
+    @name2 = "Longjohns Boots and a Belt"
+    @album2_attributes = {:name => @name2, :id => nil}
+    @album2 = Album.new(@album2_attributes)
+    @album2.save
     #@song_name2 = "Never Learn"
     #@song2 = Song.new(@song_name2, @album2.id, nil)
     #@song2.save
@@ -38,22 +36,19 @@ describe('#Album') do
     it('saves an album to PostgreSQL database') do
       album3 = Album.new({:name => "Diamond Dogs", :id => nil})
       album3.save
-      expect(Album.all).to(eq([@album, album3]))
+      expect(Album.all).to(eq([@album, @album2, album3]))
     end
   end
 #
-#  describe('#update') do
-#    it('updates album attributes') do
-#      album3 = Album.new("Diamond Dogs", "David Bowie", 1974, "Rock", nil)
-#      album3.update(@name2, @artist2, @year2, @genre2)
-#      album3.save
-#      expect(album3.name).to(eq(@name2))
-#      expect(album3.artist).to(eq(@artist2))
-#      expect(album3.year).to(eq(@year2))
-#      expect(album3.genre).to(eq(@genre2))
-#      expect(Album.find(3)).to(eq(album3))
-#    end
-#  end
+  describe('#update') do
+    it('updates album attributes') do
+      album3 = Album.new({:name => "Diamond Dogs", :id => nil})
+      album3.save
+      album3.update(@name2)
+      expect(album3.name).to(eq(@name2))
+      expect(Album.find(album3.id)).to(eq(album3))
+    end
+  end
 #
 #  describe('#delete') do
 #    it('deletes an album by id') do
@@ -91,8 +86,7 @@ describe('#Album') do
       expect(Album.all).to(eq([]))
     end
     it('returns an array of Album objects that have been saved') do
-      @album = Album.new(@album_attributes)
-      expect(Album.all).to(eq([@album]))
+      expect(Album.all).to(eq([@album, @album2]))
     end
   end
 #

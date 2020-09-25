@@ -51,12 +51,9 @@ class Album
     @id = result.first().fetch("id").to_i
   end
 
-  def update(new_name, new_artist, new_year, new_genre)
+  def update(new_name)
     self.name = new_name
-    self.artist = new_artist
-    self.year = new_year
-    self.genre = new_genre
-    self.save
+    DB.exec("UPDATE albums SET name = '#{@name}' WHERE id = #{@id};")
   end
 
   def delete
