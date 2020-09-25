@@ -40,15 +40,14 @@ describe('#Song') do
       expect(Song.all).to(eq([@song, @song2]))
     end
   end
-#
-#   
-#  describe('.find') do
-#    it('returns song by id') do
-#      expect(Song.find(@song.id)).to(eq(@song))
-#      expect(Song.find(@song2.id)).to(eq(@song2))
-#    end
-#  end
-#
+   
+  describe('.find') do
+    it('returns song by id') do
+      expect(Song.find(@song.id)).to(eq(@song))
+      expect(Song.find(@song2.id)).to(eq(@song2))
+    end
+  end
+
 #  describe('.find_by_album') do
 #    it('finds an array of songs from album of album_id') do
 #      expect(Song.find_by_album(@album.id)).to(eq([@song]))
