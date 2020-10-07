@@ -11,3 +11,4 @@ gem "pry"
 gem "sinatra-contrib"
 gem "capybara"
 gem "pg"
+gem 'rake'
